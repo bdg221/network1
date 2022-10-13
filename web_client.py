@@ -15,6 +15,8 @@ CRLF = "\r\n\r\n"
 
 
 def web_call(url, method="GET"):
+
+    # get the hostname, port, and path from the provided URL
     url = urlparse(url)
     path = url.path
     hostname = url.hostname
@@ -65,6 +67,7 @@ def web_call(url, method="GET"):
         if not data:
             break
         else:
+            # decode the bytes into a string and append it to the dataAppend string
             dataAppend += data.decode()
 
     # shutdown and close tcp connection and socket
