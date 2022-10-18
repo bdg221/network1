@@ -56,8 +56,8 @@ def web_call(url, method="GET"):
     headers = "Host: "+hostname+":"+str(port)
 
     msg = "%s %s HTTP/1.1\r\n%s%s" % (method, path, headers,CRLF)
-    #msg = method + " %s HTTP/1.0%s" % (path, CRLF)
-    print("msg request: \r\n" + msg)
+
+    #print("msg request: \r\n" + msg)
 
     # send HTTP get request
     s.sendall(msg.encode())
