@@ -57,6 +57,7 @@ class MyServer(BaseHTTPRequestHandler):
     def _set_headers(self):
         self.send_header("Content-Length", os.path.getsize(os.path.curdir + self.path))
         self.send_header("Content-type", "text/html")
+        self.send_header("Connection", "close")
         self.end_headers()
 
     # this is a helper-method to verify the file exists or throw a 404 if it does not
