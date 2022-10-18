@@ -12,12 +12,13 @@ serverPort = 8080
 serverDirectory = "./www/"
 
 class MyServer(BaseHTTPRequestHandler):
+    protocol_version = 'HTTP/1.1'
+
     # this handles the GET functionality for the web server
     def do_GET(self):
         # set server name for header
         MyServer.server_version = 'Brian Goldsmith'
         MyServer.sys_version = ''
-        self.protocol_version = 'HTTP/1.1'
 
         # enclosed main GET code in a try, just in case there are any errors
         try:
@@ -38,7 +39,6 @@ class MyServer(BaseHTTPRequestHandler):
         # set server name for header
         MyServer.server_version = 'Brian Goldsmith'
         MyServer.sys_version = ''
-        self.protocol_version = 'HTTP/1.1'
 
         # enclosed main HEAD code in a try, just in case there are any errors
         try:
@@ -51,10 +51,6 @@ class MyServer(BaseHTTPRequestHandler):
             self.send_error(501, "Server is unable to the handle request")
             self.end_headers()
 
-    def do_POST(self):
-        self.protocol_version = 'HTTP/1.1'
-        self.send_error(501, "Server is unable to the handle request")
-        self.end_headers()
 
     # _set_headers sets the additional headers and calls end_headers()
     def _set_headers(self):
