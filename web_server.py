@@ -28,6 +28,7 @@ class MyServer(BaseHTTPRequestHandler):
                     self._set_headers()
                     with open(os.path.curdir + self.path, 'rb') as file:
                         self.wfile.write(bytes(file.read()))
+                    print("should be done")
 
         except:
             # if the try failed for any reason, throw a 501 error

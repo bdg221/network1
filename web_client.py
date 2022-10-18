@@ -40,7 +40,8 @@ def web_call(url, method="GET"):
     * regardless of any Python socket timeout setting.
     ***********************************************************************************
     """
-    s.settimeout(0.30)
+    #s.settimeout(0.30)
+    s.settimeout(0.90)
     """
     **************************************************************************************
     * Avoid socket.error: [Errno 98] Address already in use exception
@@ -52,12 +53,14 @@ def web_call(url, method="GET"):
 
     # set up TCP connection
     s.connect((HOST, PORT))
+    headers = "Host: "+hostname+":"+str(port)
 
+    #msg = "%s %s HTTP/1.1\r\n%s%s" % (method, path, headers,CRLF)
     msg = method + " %s HTTP/1.0%s" % (path, CRLF)
-    # print("msg request: \n", msg)
+    print("msg request: \r\n" + msg)
 
     # send HTTP get request
-    s.send(msg.encode())
+    s.sendall(msg.encode())
 
     dataAppend = ''
 
